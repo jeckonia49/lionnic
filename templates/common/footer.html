@@ -1,0 +1,114 @@
+{% load static %}
+
+<footer class="fl-wrap main-footer">
+    <div class="container">
+        <!-- footer-widget-wrap -->
+        <div class="footer-widget-wrap fl-wrap">
+            <div class="row">
+                <!-- footer-widget -->
+                <div class="col-md-4">
+                    <div class="footer-widget">
+                        <div class="footer-widget-content">
+                            <a href="{% url 'posts:home' %}" class="footer-logo"><img src="{% static 'images/lion1.png' %}" alt="logo"></a>
+                            <p>Welcome to Lionnic, your portal to the world of credible and compelling news. 
+                                Our mission is to empower you with accurate, up-to-the-minute information that shapes our world. 
+                                We dream of a society well-informed, united by knowledge, and driven by facts. 
+                            </p>
+                            <div class="footer-social fl-wrap">
+                                
+                                <!-- modified social -->
+                                <ul>
+                                    <li><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                    <!-- <li><a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li> -->
+                                </ul>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-widget  end-->
+                <!-- footer-widget -->
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <div class="footer-widget-title">Categories </div>
+                        <div class="footer-widget-content">
+                            <div class="footer-list footer-box fl-wrap">
+                                {% if footer_categories %}
+                                <ul>
+                                    {% for footer_link in footer_categories %}
+                                    <li> <a href="#">{{footer_link.name }}</a></li>
+                                   {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-widget  end-->
+                <!-- footer-widget -->
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <div class="footer-widget-title">Links</div>
+                        <div class="footer-widget-content">
+                            <div class="footer-list footer-box fl-wrap">
+                                <ul>
+                                    <li> <a href="{% url 'contact' %}">Premium</a></li>
+                                    <li> <a href="{% url 'contact' %}">Advertisment</a></li>
+                                    <li> <a href="{% url 'contact' %}">Sponsorship</a></li>
+                                    <li> <a href="{% url 'privacy' %}">Privacy Policy</a></li>
+                                    <li> <a href="{% url 'terms-and-condition'%}">Terms & Conditions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-widget  end-->								
+                <!-- footer-widget -->
+                <div class="col-md-4" style="transform:translateY(-20px) !important;">
+                    <div class="footer-widget">
+                        <div class="footer-widget-title" id="subscribe">Subscribe</div>
+                        <div class="footer-widget-content">
+                            <div class="subcribe-form fl-wrap">
+                                <p>Want to be notified when we post updated news. Just sign up and we'll send you a notification by email.
+                                    We do not send spam email or use your email for any marketing activity.
+                                </p>
+                                <form id="subscribe" class="fl-wrap" action="{% url 'subscribe-view' %}" method="post">
+                                    {% csrf_token %}
+                                    <!-- <input class="enteremail" name="email" id="subscribe-email" placeholder="Your Email" spellcheck="false" type="text"> -->
+                                    {{subscriber_form.email}}
+                                    <button type="submit" id="subscribe-button" class="subscribe-button color-bg">Send </button>
+                                    <label for="subscribe-email" class="subscribe-message">
+                                        
+                                    </label>
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <small>{{message}}</small>
+                                    {% endfor %}
+                                    {% endif  %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer-widget  end-->
+            </div>
+        </div>
+        <!-- footer-widget-wrap end-->
+    </div>
+    <div class="footer-bottom fl-wrap">
+        <div class="container">
+            <div class="copyright"><span>&#169; Lionnic 2023</span> . All rights reserved. </div>
+            <div class="to-top"> <i class="fas fa-caret-up"></i></div>
+            <div class="subfooter-nav">
+                <ul>
+                    <li><a href="{% url 'terms-and-condition'%}">Terms & Conditions</a></li>
+                    <li><a href="{% url 'privacy'%}">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

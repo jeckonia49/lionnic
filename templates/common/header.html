@@ -1,0 +1,141 @@
+{% load static %}
+
+<header class="main-header">
+  <!-- top bar -->
+  <div class="top-bar fl-wrap">
+    <div class="container">
+      <div class="date-holder">
+        <span class="date_num"></span>
+        <span class="date_mounth"></span>
+        <span class="date_year"></span>
+      </div>
+      <div class="header_news-ticker-wrap">
+        <div class="hnt_title">Hot News :</div>
+        <div class="header_news-ticker fl-wrap">
+          <ul>
+            <li>
+              <a href=""
+                >They chose to leave rather than put up with a governor who
+                follows Internet .</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="n_contr-wrap">
+          <div class="n_contr p_btn"><i class="fas fa-caret-left"></i></div>
+          <div class="n_contr n_btn"><i class="fas fa-caret-right"></i></div>
+        </div>
+      </div>
+      <ul class="topbar-social">
+        <!-- Facebook -->
+<li>
+  <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</li>
+
+<!-- Twitter -->
+<li>
+  <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+</li>
+
+<!-- Instagram -->
+<li>
+  <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+</li>
+
+<!-- LinkedIn -->
+<!-- <li>
+  <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+</li> -->
+
+<!-- Pinterest -->
+<li>
+  <a href="#" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+</li>
+
+<!-- YouTube -->
+<li>
+  <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+</li>
+
+<!-- Replace with other social media icons as needed -->
+        
+      </ul>
+    </div>
+  </div>
+  <!-- top bar end -->
+  <div class="header-inner fl-wrap">
+    <div class="container">
+      <!-- logo holder  -->
+      <a href="{% url 'posts:home' %}" class="logo-holder"
+        ><img src="{% static 'images/lion1.png' %}" style="transform: translateY(-15px) !important;" alt="logo"
+      /></a>
+      <!-- logo holder end -->
+      <div class="search_btn htact show_search-btn">
+        <i class="far fa-search"></i> <span class="header-tooltip">Search</span>
+      </div>
+      <div  class="srf_btn htact show-reg-form">
+        <i class="fal fa-user"></i> <span class="header-tooltip">Sign In</span>
+      </div>
+     
+      <!-- header-search-wrap -->
+      <div class="header-search-wrap novis_sarch">
+        <div class="widget-inner">
+          <form action="{% url 'posts:search' %}" id="lionnic_qs_form">
+              {% csrf_token %}
+            <input
+                    title="lionnic_qs"
+                    name="lionnic_qs"
+                    id="lionnic_qs"
+                    type="search"
+                    class="search"
+                    placeholder="Search..."
+                    value=""
+            />
+            <button type="submit" title="search" class="search-submit" id="submit_btn">
+              <i class="fa fa-search transition"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- header-search-wrap end -->
+     
+      <!-- nav-button-wrap-->
+      <div class="nav-button-wrap">
+        <div class="nav-button"><span></span><span></span><span></span></div>
+      </div>
+      <!-- nav-button-wrap end-->
+      <!--  navigation -->
+      <div class="nav-holder main-menu">
+        <nav>
+          <ul>
+            <li id="menu-item-55" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children"><a href="{% url 'posts:home' %}" class="menu-home">Home</a>
+            </li>
+            
+            
+            <li id="menu-item-361" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="menu-pages">Pages<i class="fas fa-caret-down"></i></a>
+              <ul class="sub-menu">
+            <li id="menu-item-422" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'about'%}" class="menu-about">About Us</a></li>
+            <li id="menu-item-421" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'contact' %}" class="menu-contacts">Contact Us</a></li>
+            <li id="menu-item-421" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'contact' %}" class="menu-contacts">Advertisment</a></li>
+            <li id="menu-item-421" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'contact' %}" class="menu-contacts">Sponsorship</a></li>
+            <li id="menu-item-421" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'contact' %}" class="menu-contacts">Guest Post</a></li>
+            <li id="menu-item-421" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'contact' %}" class="menu-contacts">Premium</a></li>
+            <li id="menu-item-362" class="menu-item menu-item-type-taxonomy menu-item-object-category"><a href="#category" >Categories</a></li>
+            <li id="menu-item-363" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="{% url 'terms-and-condition' %}">Terms of Use</a></li>
+            <li id="menu-item-364" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="#subscribe" >Subscribe</a></li>
+          </ul>
+            
+          
+         
+            {% for nav_lin in nav_categories %}
+            
+            <li><a href="{% url 'posts:posts' %}">{{nav_lin.name}}</a></li>
+           
+           {% endfor %}
+          </ul>
+        </nav>
+      </div>
+      <!-- navigation  end -->
+    </div>
+  </div>
+</header>

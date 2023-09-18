@@ -1,0 +1,286 @@
+{% load static %}
+
+
+<div class="col-md-8">
+    <div class="main-container fl-wrap fix-container-init">
+        <!-- single-post-header  -->
+        <div class="single-post-header fl-wrap">
+            <a class="post-category-marker" href="">{{post.category|upper}}</a>
+            <div class="clearfix"></div>
+            <h1>{{post.title}}</h1>
+            <h4>{{post.summary}}</h4>
+            <div class="clearfix"></div>
+            <div class="author-link"><a href="">
+                <img src="{% if post.writer.avatar %}{{post.writer.avatar.url}}{% else %}{% static 'images/avatar/ceod.png' %}{% endif %}" alt="{{post.writer}}"> 
+                <span>By {{post.writer.username}}</span></a></div>
+            <span class="post-date"><i class="far fa-clock"></i> {{post.updatedAt|date:"d M Y"}}</span>
+            <ul class="post-opt">
+                <li><i class="far fa-comments-alt"></i> {{post.comments}} </li>
+                <li><i class="fal fa-eye"></i>  {{post.views}} </li>
+            </ul>
+        </div>
+        <!-- single-post-header end   -->
+        <!-- single-post-media   -->
+        <div class="single-post-media fl-wrap">
+            <div class="single-slider-wrap fl-wrap">
+                <div class="single-slider fl-wrap">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper lightgallery">
+                            {% if post.get_sliders %}
+                            <!-- swiper-slide   -->
+                            {% for post in post.get_sliders %}
+                            <div class="swiper-slide hov_zoom" style="width: 100%; max-height:400px;">
+                                <img src="{{post.slider.url}}" style="object-fit: contain;" alt="">
+                                <a href="{{post.slider.url}}" class="box-media-zoom   popup-image"><i class="fas fa-search"></i></a>
+                                <span class="post-media_title pmd_vis">© This image is subjected to copyright</span>
+                            </div>
+                            {% endfor %}
+                            <!--  -->
+                            {% endif %}
+                            <div class="swiper-slide hov_zoom" style="max-height:400px; width: 100%;">
+                                <img src="{{post.image.url}}" style="object-fit: contain;" alt="">
+                                <a href="{{post.image.url}}" class="box-media-zoom   popup-image"><i class="fas fa-search"></i></a>
+                                <span class="post-media_title pmd_vis">© This image is subjected to copyright</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if post.get_sliders %}
+                <div class="ss-slider-controls2">
+                    <div class="ss-slider-pagination pag-style"></div>
+                </div>
+                <div class="ss-slider-cont ss-slider-cont-prev"><i class="fas fa-caret-left"></i></div>
+                <div class="ss-slider-cont ss-slider-cont-next"><i class="fas fa-caret-right"></i></div>
+            {% endif %}
+            </div>
+        </div>
+        <!-- single-post-media end   -->
+        <!-- single-post-content   -->
+        <div class="single-post-content spc_column fl-wrap">
+            <div class="single-post-content_column">
+                <div class="share-holder ver-share fl-wrap">
+                    <div class="share-title">Share This <br> Article:</div>
+                    <div class="share-container  isShare"></div>
+                </div>
+            </div>
+            <div class="fs-wrap smpar fl-wrap">
+                <div class="fontSize"><span class="fs_title">Font size: </span><input type="text" class="rage-slider" data-step="1" data-min="12" data-max="15" value="12"></div>
+                <div class="show-more-snopt smact"><i class="fal fa-ellipsis-v"></i></div>
+                <div class="show-more-snopt-tooltip">
+                    <a href="#comments" class="custom-scroll-link"> <i class="fas fa-comment-alt"></i> Write a Comment</a>
+                    <a href="#"> <i class="fas fa-exclamation-triangle"></i> Report </a>
+                </div>
+                <a class="print-btn" href="javascript:window.print()" data-microtip-position="bottom"><span>Print</span><i class="fal fa-print"></i></a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="single-post-content_text" id="font_chage">
+                {{post.content|safe}}
+            </div>
+            {% if post.tags %}
+            <div class="single-post-footer fl-wrap">
+                <div class="post-single-tags">
+                    <span class="tags-title"><i class="fas fa-tag"></i> Tags : </span>
+                    <div class="tags-widget">
+                        {% for tag in post.tags.all %}
+                        <a href="#">{{tag.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <!-- single-post-nav"   -->
+            <div class="single-post-nav fl-wrap">
+                {% if prev %}
+                <a href="{{prev.get_absolute_url}}" class="single-post-nav_prev spn_box">
+                    <div class="spn_box_img">
+                        <img src="{{prev.image.url}}" class="respimg" alt="">
+                    </div>
+                    <div class="spn-box-content">
+                        <span class="spn-box-content_subtitle"><i class="fas fa-caret-left"></i> Prev Post</span>
+                        <span class="spn-box-content_title">{{prev.title}}</span>
+                    </div>
+                </a>
+                {% endif %}
+                <!--  -->
+                {% if next %}
+                <a href="{{next.get_absolute_url}}" class="single-post-nav_next spn_box">
+                    <div class="spn_box_img">
+                        <img src="{{next.image.url}}" class="respimg" alt="">
+                    </div>
+                    <div class="spn-box-content">
+                        <span class="spn-box-content_subtitle">Next Post <i class="fas fa-caret-right"></i></span>
+                        <span class="spn-box-content_title">{{next.title}}</span>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+            <!-- single-post-nav"  end   -->
+        </div>
+        <!-- single-post-content  end   -->
+        <div class="limit-box2 fl-wrap"></div>
+        <!-- post-author-->                                   
+        <div class="post-author fl-wrap">
+            <div class="author-img">
+                <img src="{% if post.writer.avatar %}{{post.writer.avatar.url}}{% else %}{% static 'images/avatar/ceod.png' %}{% endif %}" alt="{{post.writer}}">	
+            </div>
+            <div class="author-content fl-wrap">
+                <h5>Written By <a href="">{{post.writer.username}}</a></h5>
+                <p>{{post.writer.bio|truncatewords:"40"}}</p>
+            </div>
+            <div class="profile-card-footer fl-wrap">
+                <a href="" class="post-author_link">View Profile <i class="fas fa-caret-right"></i></a>
+                <div class="profile-card-footer_soc">
+                    <div class="profile-card-footer_title">Follow: </div>
+                    <div class="profile-card-social">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--post-author end-->	
+        {% if related %}	
+        <div class="more-post-wrap  fl-wrap">
+            <div class="pr-subtitle prs_big">Related Posts</div>
+            <div class="list-post-wrap list-post-wrap_column fl-wrap">
+                <div class="row">
+                    {% for post in related %}
+                    <div class="col-md-6">
+                        <!--list-post-->	
+                        <div class="list-post fl-wrap" >
+                            <a class="post-category-marker" href="category.html">{{post.category}}</a>
+                            <div class="list-post-media">
+                                <a href="{{post.get_absolute_url}}">
+                                    <div class="bg-wrap">
+                                        <div class="bg" data-bg="{{post.image.url}}"></div>
+                                    </div>
+                                </a>
+                                <span class="post-media_title">&copy; This image is subjected to copyright</span>
+                            </div>
+                            <div class="list-post-content">
+                                <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+                                <span class="post-date"><i class="far fa-clock"></i>  {{post.createdAt|date:"d M Y"}}</span>
+                            </div>
+                        </div>
+                        <!--list-post end-->						  
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!--comments  -->
+       
+        <div id="comments" class="single-post-comm fl-wrap">
+            {% if post.get_comments %}
+            <div class="pr-subtitle prs_big">comment{{post.comments|pluralize}} <span>{{post.comments}}</span></div>
+            <ul class="commentlist clearafix">
+                {% for comment in post.get_comments %}
+                <li class="comment">
+                    <div class="comment-author">
+                        <img alt="" src="{% static 'images/avatar/ceod.png' %}" width="50" height="50">
+                    </div>
+                    <div class="comment-body smpar">
+                        <h4><a href="#">{{comment.full_name}}</a></h4>
+                        <div class="box-widget-menu-btn smact"><i class="far fa-ellipsis-h"></i></div>
+                        <div class="show-more-snopt-tooltip bxwt">
+                           <a href="#"> <i class="fas fa-exclamation-triangle"></i> Report </a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <p>{{comment.comment}}</p>
+                        {% if request.user.is_staff %}
+                        <a class="comment-reply-link" href="#"><i class="fas fa-reply"></i> Reply</a>
+                        {% endif %}
+                        <div class="comment-meta"><i class="far fa-clock"></i> {{comment.postedAt|date:"F d, Y"}}</div>
+                        <div class="comment-body_dec"></div>
+                    </div>
+                </li>
+                {% if comment.get_comment_reply %}
+                
+                <li class="comment comment_reply">
+                    <div class="comment-author">
+                        <img alt="" src="{% static 'images/avatar/ceod.png' %}" width="50" height="50">
+                    </div>
+                    <div class="comment-body smpar">
+                        <h4><a href="#">{{post.writer.username}}</a></h4>
+                        <div class="box-widget-menu-btn smact"><i class="far fa-ellipsis-h"></i></div>
+                        <div class="show-more-snopt-tooltip bxwt">
+                           
+                        </div>
+                        <div class="clearfix"></div>
+                        <p>{{comment.get_comment_reply.reply }}</p>
+                        <!-- <a class="comment-reply-link" href="#"><i class="fas fa-reply"></i> Reply</a> -->
+                        <div class="comment-meta"><i class="far fa-clock"></i> {{comment.postedAt|date:"F d, Y"}}</div>
+                        <div class="comment-body_dec"></div>
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="clearfix"></div>
+            <div id="addcom" class="clearafix">
+                <div class="pr-subtitle"> Leave A Comment <i class="fas fa-caret-down"></i></div>
+                <div class="comment-reply-form fl-wrap">
+                    <form onsubmit="validate()" method="POST" 
+                    id="add-comment" class="add-comment custom-form" 
+                    action="{{post.get_comment_upload_url}}">
+                       {% csrf_token %}
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- <input  type="text" placeholder="Your Name *" value="" /> -->
+                                    {{comment_form.full_name}}
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- <input type="text" placeholder="Email Address*" value="" /> -->
+                                    {{comment_form.email}}
+                                </div>
+                            </div>
+                            <!-- <textarea placeholder="Your Comment:"></textarea> -->
+                            {{comment_form.comment}}
+                        </fieldset>
+                        <button type="submit" class="btn float-btn color-btn">  Submit Comment <i class="fas fa-caret-right"></i> </button>
+                    </form>
+                </div>
+            </div>
+            <!--end respond-->
+        </div>
+        
+        <!--comments end -->					  
+    </div>
+</div>
+
+
+
+<!-- JS -->
+
+<script>
+function validate(){
+    return {
+        full_name: document.getElementById("id_full_name").value,
+        email:document.getElementById("id_email").value,
+        comment:document.getElementById("id_comment").value,
+    }
+}
+
+const form = document.getElementById("add-comment");
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    fetch("{{post.get_comment_upload_url}}", {
+        method:"POST",
+        headers: {'X-CSRFToken': "{{csrf_token}}"},
+        mode: 'same-origin',
+        body:validate()
+    }).then(response=>response.json()).then(data=>{
+        alert("Your comment was posted successfully")
+    }).catch(error=>{
+        alert("Something went wrong. Try again")
+    });
+    
+})
+</script>

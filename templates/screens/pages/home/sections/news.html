@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="section-title">
+    <h2>Lastest World News</h2>
+    <h4>Don't miss daily news</h4>
+    <div class="ajax-nav">
+        
+            <ul>
+                <li> <a href="{% url 'posts:posts' %}"><i class="current_page"></i>News</a></li>
+                <li> <a href="{% url 'posts:posts' %}"><i></i>Entertainment</a></li>
+                <li> <a href="{% url 'posts:posts' %}"><i></i>Business</a></li>
+                <li> <a href="{% url 'posts:posts' %}"><i></i>Sports</a></li>
+                <li> <a href="{% url 'posts:posts' %}"><i></i>Internet</a></li>
+            </ul>
+    
+            
+    </div>
+</div>
+<div class="ajax-wrapper fl-wrap">
+    <div class="ajax-loader"><img src="{% static 'images/loading.gif' %}" alt=""/></div>
+    <!-- <div id="ajax-content" class="fl-wrap"> -->
+    
+    <!-- TODO: ADD AJAX CALL LATER HERE -->
+
+    
+    
+
+    <!-- </div> -->
+    
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx     adds section -->
+</div>
+
+
+
+<div class="content-banner-wrap cbw_mar">
+    <img src="{% static 'images/bg/adsection.jpeg' %}" class="respimg" alt="ads section">
+</div>
+<div class="clearfix"></div>
+
+
+

@@ -1,0 +1,182 @@
+{% extends "base.html" %} {% load static %}
+<!---->
+{% block title %}
+{{ block.super }} about us 
+{% endblock title %}
+<!---->
+
+{% block content %}
+ <!--section   -->
+ <div class="breadcrumbs-header fl-wrap">
+    <div class="container">
+        <div class="breadcrumbs-header_url">
+            <a href="{% url  'posts:home' %}">Home</a><span>About</span>
+        </div>
+        <div class="scroll-down-wrap">
+            <div class="mousey">
+                <div class="scroller"></div>
+            </div>
+            <span>Scroll Down To Discover</span>
+        </div>
+    </div>
+    <div class="pwh_bg"></div>
+</div>
+<!-- section end  -->
+<!--section   -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="section-title sect_dec">
+                    <h2>Our Story</h2>
+                    <h4>Who we are</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>Welcome to Lionnic, your portal to the world of credible and compelling news. Our mission is to empower you with accurate, up-to-the-minute information that shapes our world. We dream of a society well-informed, united by knowledge, and driven by facts. At Lionnic, our sources are diverse, drawing from trusted global outlets, ensuring the utmost legitimacy. Join us on this journey towards a brighter, more informed future, where truth reigns supreme. Trust in Lionnic for news that matters, because we believe knowledge is the key to progress.</p>
+                    <p>Lionnic is a prominent global media brand with a rich legacy, earning the trust and respect of over 10 million people worldwide across our various platforms. Established in 2022, Lionnic initially served as the pioneer weekly news updates, offering a concise overview of global events tailored for those with busy schedules</p>
+                    <p>Our core mission at Lionnic is to provide reliable insights into the key ideas and individuals shaping and enhancing our world. This commitment forms the cornerstone of our rapidly expanding divisions, innovative products, and partnership solutions.</p>
+                    <!-- <a href="" class="btn float-btn color-btn image-popup"> <span>Our Story Video</span> <i class="fas fa-caret-right"></i></a> -->
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                
+                <div class="about-img fl-wrap">
+                    <img src="{% static 'images/bg/newspap.jpg' %}" class="respimg" alt="">
+                    <div class="about-img-hotifer color-bg">
+                        <p>"In a rapidly evolving world driven by the potency of knowledge, our commitment is to arm individuals with meticulously tailored insights precisely when they need them. We aim to illuminate their path, enabling well-informed choices and unlocking a world of potential."</p>
+                        <h4>Dan De Lion</h4>
+                        <h5>Lionnic CEO</h5>
+                    </div>
+                </div>
+                <br>
+                <br>
+                
+                
+                <div class="about-img fl-wrap">
+                    <img src="{% static 'images/bg/founder.jpg' %}" class="respimg" alt="">
+                    <div class="about-img-hotifer color-bg">
+                        <p>""In an era characterized by the value of wisdom, our vision is to embolden individuals with intricately customized intelligence precisely synchronized with pivotal moments. Our goal is to steer them towards enlightenment, empowering them to seize limitless prospects."</p>
+                        <h4>Prof. Oscar K. Kach</h4>
+                        <h5>Lionnic Founder</h5>
+                    </div>
+                </div>
+                
+                
+                
+                
+            </div>
+            <br>
+            
+        </div>
+    </div>
+    <div class="sec-dec"></div>
+</section>
+<br>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="section-title sect_dec">
+                    
+                    <h4>Ethical Principles</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>At Lionnic, we aspire to be the most trusted global news source. Our unwavering dedication is to produce journalism that consistently upholds the highest standards. Regardless of the subject matter or target audience, our journalism reflects our unwavering commitment to quality and integrity. Our company's reputation and the credibility of our journalism hinge on our steadfast adherence to these shared values.</p>
+                    
+                </div>
+                <div class="section-title sect_dec">
+                    
+                    <h4>Error Corrections:</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>We take any identified errors in our published content seriously. Upon confirmation, Lionnic promptly issues corrections through the appropriate medium, whether it's in print, digital, video, or social media. For articles on our website, a correction notice is appended to rectify any inaccuracies.</p>
+                    
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <div class="about-img fl-wrap">
+                    <img src="{% static 'images/bg/newza.jpg' %}" class="respimg" alt="">
+                    <div class="about-img-hotifer color-bg">
+                        <p>"During times when news can be noise, as an editor, I ensure that only the most impactful stories reach the audience."</p>
+                        <!-- <h4>Les Lee</h4> -->
+                        <h5>Lionnic Editor</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sec-dec"></div>
+</section>
+<br>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="section-title sect_dec">
+                    
+                    <h4>Subscriptions</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>As part of our revenue model, Lionnic offers subscriptions to our products. Rest assured, our revenue-generating activities never compromise our editorial standards.</p>
+                    
+                </div>
+                <div class="section-title sect_dec">
+                    
+                    <h4>Advertising and Sponsored Content</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>Lionnic generates revenue through advertising and branded content. It's important to note that advertisements and branded content are developed and sold separately from Lionnic's categories. All branded content is clearly labeled as such, and it's essential to understand that advertisements do not reflect the views of Lionnic's editorial staff.</p>
+                        <p> Occasionally, the editorial team may create packages, stories, and newsletters sponsored by advertisers. In such cases, these pieces are clearly marked as "sponsored by." However, please be assured that editorial content produced in collaboration with sponsors is developed in the same rigorous manner as our standard editorial content and adheres to the same high editorial standards.
+                        </p>
+                    
+                </div>
+                <div class="section-title sect_dec">
+                    
+                    <h4>Affiliate Links</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>In some of our blog posts and news articles, you may find affiliate links. When you make a purchase through these links, Lionnic may receive a commission, without any additional cost to you as the purchaser. We want to emphasize that Lionnic is never compensated to provide a positive review of a product or to include it in a buying guide. Our reviews remain entirely independent and unbiased.</p>
+                    
+                </div>
+                <div class="section-title sect_dec">
+                    
+                    <h4>Get In Touch</h4>
+                </div>
+                <div class="about-wrap">
+                    <p>We welcome your feedback and contributions. If you wish to reach out to our editorial team, please send your letters to editor.Lionnic@gmail.com. For publication consideration, please include your full name, location, and contact information. </p>
+                    <p>Stay informed with Lionnic - Your Source for Global News Updates. </p>
+                    
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+                <div class="about-img fl-wrap">
+                    <img src="{% static 'images/bg/newsa.jpg' %}" class="respimg" alt="">
+                    <div class="about-img-hotifer color-bg">
+                        <p>"Lionnic embodies the essence of responsible journalism, and as a article writer, I take pride in being a part of this noble mission."</p>
+                        <h4>Milimo M. D</h4>
+                        <h5>Lionnic Writer</h5>
+                    </div>
+                </div>
+                
+                <br>
+                <div class="about-img fl-wrap">
+                    <img src="{% static 'images/bg/jecks.jpg' %}" class="respimg" alt="">
+                    <div class="about-img-hotifer color-bg">
+                        <p>"As a software engineer, I play a vital role in shaping the digital landscape, gradually building the future using the language of code."</p>
+                        <h4>Prof J Kwasa.</h4>
+                        <h5>Lionnic Software Engineer</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sec-dec"></div>
+</section>
+<br>
+<br>
+<!--about end   -->
+{% endblock content %}

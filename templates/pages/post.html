@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% load static %}
+
+{% block meta %}
+<meta name="keywords" content="" />
+{% endblock meta %}
+
+{% include "meta/meta_tags2.html" %}
+
+
+
+
+<!---->
+{% block title %}
+{{ block.super }} {{post.title}}
+{% endblock title %}
+<!---->
+
+{% block content %}
+
+
+<!-- checking for bg -->
+
+{% if post.bg_image %}
+ 
+ <!--section   -->
+ <section class="hero-section">
+    <div class="bg-wrap hero-section_bg">
+        <div class="bg" data-bg="{{post.bg_image.url}}"></div>
+    </div>
+    <div class="container">
+        <div class="hero-section_title hs_single-post">
+            <a class="post-category-marker color-bg" href="">{{post.category}}</a>
+            <span class="post-date"><i class="far fa-clock"></i> {{post.createdAt|date:"d M Y"}}</span>
+            <div class="clearfix"></div>
+            <h2>{{post.title}}</h2>
+            <h5>{{post.summary|truncatewords:"10"}}</h5>
+            <div class="author-link"><a href=""><img src="{% static 'images/avatar/ceod.png' %}" alt=""><span>By {{post.writer.username}}</span></a></div>
+            <ul class="post-opt">
+                <li><i class="far fa-comments-alt"></i> {{post.comments}} </li>
+                <li><i class="fal fa-eye"></i>  {{post.views}} </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <div class="scroll-down-wrap scw_transparent">
+            <div class="mousey">
+                <div class="scroller"></div>
+            </div>
+            <span>Scroll Down To Discover</span>
+        </div>
+    </div>
+</section>
+{% endif %}
+<!-- section end  -->
+<div class="breadcrumbs-section fl-wrap">
+    <div class="container">
+        <div class="breadcrumbs-header_url">
+            <a href="{% url  'posts:home' %}">Home</a><span>{{post.title|upper}}</span>
+        </div>
+        <div class="share-holder hor-share">
+            <div class="share-title">Share: </div>
+            <div class="share-container  isShare"></div>
+        </div>
+    </div>
+    <div class="pwh_bg"></div>
+</div>
+<!--section   -->
+
+<!-- sections -->
+<section>
+    <div class="container">
+        <div class="row">
+            {% include "pages/sections/main.html" %}
+        </div>
+        <div class="limit-box fl-wrap"></div>
+    </div>
+</section>
+
+<!-- Banner -->
+
+{% include "shared/banner.html" %}
+
+{% endblock content %}

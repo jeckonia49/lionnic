@@ -1,0 +1,50 @@
+
+
+
+
+
+{% extends "dashboard/auth/base.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block action %}
+
+
+<div class="col-lg-4">
+    <div class="card">
+      <div class="body">
+        <div class="user text-center m-b-30">
+          <img
+            src="{% static 'dashboard/images/user-small.png' %}"
+            class="rounded-circle"
+            alt="Avatar"
+          />
+          <h4 class="name m-t-10">Christy Wert</h4>
+          <p>info@example.com</p>
+        </div>
+        <form
+          action=""
+        >
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Enter your password ..."
+            />
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary btn-lg btn-block"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+</div>
+  
+  
+  {% endblock action %}

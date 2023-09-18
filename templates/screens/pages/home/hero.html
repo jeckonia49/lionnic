@@ -1,0 +1,89 @@
+{% load static %}
+
+
+<div class="hero-hrid fl-wrap gray-bg">
+    <div class="container">
+        <div class="row">
+            {% if slider %}
+            <div class="col-md-6">
+                <div class="single-slider-wrap fl-wrap">
+                    <div class="single-slider fl-wrap">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for slide in slider %}
+                                <!-- swiper-slide   -->
+                                <div class="swiper-slide">
+                                    <div class="grid-post-item  bold_gpi  fl-wrap">
+                                        <div class="grid-post-media gpm_sing">
+                                            <div class="bg" data-bg="{% if slide.bg_image %}{{slide.bg_image.url}}{% else %}{{slide.image.url}}{% endif %}"></div>
+                                            <div class="author-link"><a href=""><img src="{% static 'images/avatar/ceod.png' %}" alt="">  <span>By {{slide.writer.username}}</span></a></div>
+                                            <div class="grid-post-media_title">
+                                                <a class="post-category-marker" href="">{{slide.category|title}}</a>
+                                                <h4><a href="{{slide.get_absolute_url}}">{{slide.title|truncatewords:"20"}}</a></h4>
+                                                <span class="video-date"><i class="far fa-clock"></i>  {{slide.createdAt|date:"d M Y"}}</span>
+                                                <ul class="post-opt">
+                                                    <li><i class="far fa-comments-alt"></i>  {{slide.comments}} </li>
+                                                    <li><i class="fal fa-eye"></i> {{slide.views}} </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- swiper-slide end   -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ss-slider-cont ss-slider-cont-prev"><i class="fas fa-caret-left"></i></div>
+                    <div class="ss-slider-cont ss-slider-cont-next"><i class="fas fa-caret-right"></i></div>
+                </div>
+            </div>
+            {% endif %}
+            <!--  -->
+            {% if top_hero_grid %}
+            <div class="col-md-3">
+                {% for slide in top_hero_grid %}
+                <div class="grid-post-item  bold_gpi  fl-wrap">
+                    <div class="grid-post-media gpm_sing">
+                        <div class="bg" data-bg="{% if slide.bg_image %}{{slide.bg_image.url}}{% else %}{{slide.image.url}}{% endif %}"></div>
+                        <div class="author-link"><a href=""><img src="{% static 'images/avatar/ceod.png' %}" alt="">  <span>By {{slide.writer.username}}</span></a></div>
+                        <div class="grid-post-media_title">
+                            <a class="post-category-marker" href="">{{slide.category|title}}</a>
+                            <h4><a href="{{slide.get_absolute_url}}">{{slide.title|truncatewords:"8"}}</a></h4>
+                            <span class="video-date"><i class="far fa-clock"></i>  {{slide.createdAt|date:"d M Y"}}</span>
+                            <ul class="post-opt">
+                                <li><i class="far fa-comments-alt"></i>  {{slide.comments}} </li>
+                                <li><i class="fal fa-eye"></i> {{slide.views}} </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <!--  -->
+            {% if bottom_hero_grid %}
+            <div class="col-md-3">
+                {% for slide in bottom_hero_grid %}
+                <div class="grid-post-item  bold_gpi    fl-wrap">
+                    <div class="grid-post-media gpm_sing bold_gpi_half">
+                        <div class="bg" data-bg="{% if slide.bg_image %}{{slide.bg_image.url}}{% else %}{{slide.image.url}}{% endif %}"></div>
+                        <div class="author-link"><a href=""><img src="{% static 'images/avatar/ceod.png' %}" alt="">  <span>{{slide.writer.username}}</span></a></div>
+                        <div class="grid-post-media_title">
+                            <a class="post-category-marker" href="">{{slide.category}}</a>
+                            <h4><a href="{{slide.get_absolute_url}}">{{slide.title|truncatewords:"6"}}</a></h4>
+                            <span class="video-date"><i class="far fa-clock"></i> {{slide.createdAt|date:"d M Y" }}</span>
+                            <ul class="post-opt">
+                                <li><i class="far fa-comments-alt"></i>  {{slide.comments}} </li>
+                                <li><i class="fal fa-eye"></i> {{slide.views}} </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+

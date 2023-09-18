@@ -1,0 +1,219 @@
+{% extends "dashboard/base.html" %}
+
+
+
+{% block content %}
+
+    <div class="container-fluid">
+      <div class="row clearfix">
+
+        <div class="col-lg-8 col-md-12 left-box">
+          {% if posts %}
+          <!--  -->
+          {% for post in posts %}
+          <div class="card single_post2">
+            
+            <div class="body">
+              <div class="content">
+                <div class="actions_sidebar">
+                  <a href="javascript:void(0)"
+                    ><i class="icon-share"></i
+                  ></a>
+                  <a href="javascript:void(0)"
+                    ><i class="icon-heart"></i> <span>5</span></a
+                  >
+                  <a href="javascript:void(0)"
+                    ><i class="icon-bubble"></i> <span>{{post.comments}}</span></a
+                  >
+                </div>
+                <h4 class="title">{{post.title|truncatewords:"20"}}</h4>
+                <p class="date">
+                  <small>{{post.createdAt|date:"M d Y"}}</small>
+                </p>
+                <p class="text">{{post.summary|truncatewords:100}}</p>
+                <a class="btn btn-primary" href="{{post.get_dashboard_absolute_url}}"
+                  >READ MORE</a
+                >
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!--  -->
+          {% endif %}
+
+          <!-- paginate -->
+          {% include "dashboard/shared/pages/posts/paginate.html" %}
+          
+       
+
+        </div>
+        
+        <div class="col-lg-4 col-md-12 right-box">
+          <div class="card">
+            <div class="body search">
+              <div class="input-group m-b-0">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="icon-magnifier"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search..."
+                />
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h2>POPULAR  CATEGORIES</h2>
+            </div>
+            {% if nav_categories %}
+            <div class="body widget">
+              <ul class="list-unstyled categories-clouds m-b-0">
+                {% for cart in nav_categories %}
+                <li><a href="javascript:void(0);">{{cart.name}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          {% if top_posts %}
+          <div class="card">
+            <div class="header">
+              <h2>Popular Posts</h2>
+            </div>
+            <div class="body widget popular-post">
+              <div class="row clearfix">
+                <div class="col-lg-12">
+                  {% for post in top_posts %}
+                  <a href="{{post.get_dashboard_absolute_url}}"><div class="single_post">
+                    <p class="m-b-0">{{post.title|truncatewords:"20"}}</p>
+                    <span>{{post.createdAt|date:"M d Y"}}</span>
+                    <div class="img-post">
+                      <img
+                        src="{{post.image}}"
+                        alt="{{post.title}}"
+                        style="width: 100%; max-height:200px"
+                      />
+                    </div>
+                  </div>
+                </a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          <!-- <div class="card">
+            <div class="header">
+              <h2>Instagram Post</h2>
+            </div>
+            <div class="body widget">
+              <ul class="list-unstyled instagram-plugin m-b-0">
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/05-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/06-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/07-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/08-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/09-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/10-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/11-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/12-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);"
+                    ><img
+                      src="../assets/images/blog/13-img.jpg"
+                      alt="image description"
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+          <div class="card">
+            <div class="header">
+              <h2>
+                Email Newsletter
+                <small
+                  >Get our products/news earlier than others, let’s get in
+                  touch.</small
+                >
+              </h2>
+            </div>
+            <div class="body widget newsletter">
+              <form action="{% url 'dashboard:subscribe_newsletter' %}" method="POST" >
+                {% csrf_token %}
+                <div class="input-group">
+                  {{subscription_form.email}}
+                  {% if subscription_form.errors %}
+                  <small>{{subscription_form.errors}}</small>
+                  {% endif %}
+                  <div class="input-group-append">
+                    <button type="submit" class="input-group-text"
+                      ><i class="icon-paper-plane"></i
+                    ></button>
+                  </div>
+                </div>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+
+{% endblock content %}
+
+<script type="text/javascript">
+
+</script>

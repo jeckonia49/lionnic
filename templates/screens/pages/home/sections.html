@@ -1,0 +1,261 @@
+{% load static %}
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="main-container fl-wrap fix-container-init">
+                    
+                    {% include "screens/pages/home/sections/news.html" %}
+                    
+                    
+                    <div class="section-title sect_dec">
+                        <h2>Top Stories</h2>
+                        <h4>Don't miss daily news</h4>
+                    </div>
+                    <div class="grid-post-wrap">
+                       {% if top_story %}
+                        <!--grid-post-item end-->								
+                        <div class="more-post-wrap  fl-wrap">
+                            <div class="list-post-wrap list-post-wrap_column fl-wrap">
+                                <div class="row">
+                                    {% for post in top_story %}
+                                    <div class="col-md-6">
+                                        <!--list-post-->	
+                                        <div class="list-post fl-wrap">
+                                            <a class="post-category-marker" href="">{{post.category|title}}</a>
+                                            <div class="list-post-media">
+                                                <a href="{{post.get_absolute_url}}">
+                                                    <div class="bg-wrap">
+                                                        <div class="bg" data-bg="{% if post.bg_image %}{{post.bg_image.url}}{% else %}{{post.image.url}}{% endif %}"></div>
+                                                    </div>
+                                                </a>
+                                                <span class="post-media_title">&copy; This image is subjected to copyright</span>
+                                            </div>
+                                            <div class="list-post-content">
+                                                <h3><a href="{{post.get_absolute_url}}">{{post.title|title|truncatewords:"20"}}</a></h3>
+                                                <span class="post-date"><i class="far fa-clock"></i>  {{post.createdAt|date:"d M Y"}}</span>
+                                            </div>
+                                        </div>
+                                        <!--list-post end-->						  
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- recent -->
+                        {% if recents %}
+                        <div class="single-grid-slider-wrap fl-wrap">
+                            <div class="single-grid-slider">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {% for post in recents %}
+                                        <!-- swiper-slide-->  
+                                        <div class="swiper-slide">
+                                            <div class="grid-post-item  bold_gpi  fl-wrap">
+                                                <div class="grid-post-media gpm_sing">
+                                                    <div class="bg" data-bg="{% if post.bg_image %}{{post.bg_image.url}}{% else %}{{post.image.url}}{% endif %}"></div>
+                                                    <div class="author-link"><a href="{{ post.writer.get_absolute_url }}">
+                                                        <img src="{% if post.writer.avatar %}{{ post.writer.avatar.url }}{% else %}{% static 'images/avatar/ceod.png' %}{% endif %}" alt="">  <span>By Dan Delion</span></a></div>
+                                                    <div class="grid-post-media_title">
+                                                        <a class="post-category-marker" href="">{{post.category|upper}}</a>
+                                                        <h4><a href="{{post.get_absolute_url}}">{{post.title|title|truncatewords:"20"}}</a></h4>
+                                                        <span class="video-date"><i class="far fa-clock"></i> {{post.createdAt|date:"d M Y"}}</span>
+                                                        <ul class="post-opt">
+                                                            <li><i class="far fa-comments-alt"></i>  {{post.comments}} </li>
+                                                            <li><i class="fal fa-eye"></i>  {{post.views}} </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- swiper-slide end-->	
+                                        {% endfor %}								
+                                    </div>
+                                    <div class="sgs-pagination sgs_ver "></div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- sidebar   -->
+                <div class="sidebar-content fl-wrap fix-bar">
+                    <!-- box-widget -->
+                    <div class="box-widget fl-wrap">
+                        <div class="box-widget-content">
+                            <!-- content-tabs-wrap -->
+                            <div class="content-tabs-wrap tabs-act tabs-widget fl-wrap">
+                                <div class="content-tabs fl-wrap">
+                                    <ul class="tabs-menu fl-wrap no-list-style">
+                                        <li class="current"><a href="#tab-popular"> Popular News </a></li>
+                                        <li><a href="#tab-resent">Recent News</a></li>
+                                    </ul>
+                                </div>
+                                <!--tabs -->                       
+                                <div class="tabs-container">
+                                    <!--tab -->
+                                    <div class="tab">
+                                        {% if popular %}
+                                        <div id="tab-popular" class="tab-content first-tab">
+                                            <div class="post-widget-container fl-wrap">
+                                                {% for post in popular %}
+                                                <!-- post-widget-item -->
+                                                <div class="post-widget-item fl-wrap">
+                                                    <div class="post-widget-item-media">
+                                                        <a href="{{post.get_absolute_url}}"><img src="{{post.image.url}}"  alt=""></a>
+                                                    </div>
+                                                    <div class="post-widget-item-content">
+                                                        <h4><a href="{{post.get_absolute_url}}">{{post.title|truncatewords:"10"}}</a></h4>
+                                                        <ul class="pwic_opt">
+                                                            <li><span>By {{post.writer.username}}</span></li>
+                                                            <li><span><i class="far fa-clock"></i>{{post.createdAt|date:"d M Y"}}</span></li>
+                                                            <li><span><i class="far fa-comments-alt"></i>{{post.comments}}</span></li>
+                                                            <li><span><i class="fal fa-eye"></i>{{post.views}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- post-widget-item end -->	
+                                                {% endfor %}											
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <!--tab  end-->
+                                    <!--tab -->
+                                    <div class="tab">
+                                        {% if recent %}
+                                        <div id="tab-resent" class="tab-content">
+                                            <div class="post-widget-container fl-wrap">
+                                                {% for post in recent %}
+                                                <!-- post-widget-item -->
+                                                <div class="post-widget-item fl-wrap">
+                                                    <div class="post-widget-item-media">
+                                                        <a href="{{post.get_absolute_url}}"><img src="{{post.image.url}}"  alt=""></a>
+                                                    </div>
+                                                    <div class="post-widget-item-content">
+                                                        <h4><a href="{{post.get_absolute_url}}">{{post.title|truncatewords:"10"}}</a></h4>
+                                                        <ul class="pwic_opt">
+                                                            <li><span><i class="far fa-clock"></i>{{post.createdAt|date:"d M Y"}}</span></li>
+                                                            <li><span><i class="far fa-comments-alt"></i>{{post.comments}}</span></li>
+                                                            <li><span><i class="fal fa-eye"></i>{{post.views}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- post-widget-item end -->	
+                                                {% endfor %}														
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <!--tab end-->							
+                                </div>
+                                <!--tabs end-->  
+                            </div>
+                            <!-- content-tabs-wrap end -->
+                        </div>
+                    </div>
+                    <!-- box-widget  end -->						
+                    <!-- box-widget -->
+                    <div class="box-widget fl-wrap">
+                        <div class="box-widget-content">
+                            <!-- <div id="weather-widget" class="ideaboxWeather" data-city="New York"></div> -->
+                        </div>
+                    </div>
+                    <!-- box-widget  end -->						
+                    <!-- box-widget -->
+                    <div class="box-widget fl-wrap">
+                        <div class="widget-title">Follow Us</div>
+                        <div class="box-widget-content">
+                            <div class="social-widget">
+                                <a href="#" target="_blank" class="facebook-soc">
+                                <i class="fab fa-facebook-f"></i>
+                                <span class="soc-widget-title">Likes</span>
+                                <span class="soc-widget_counter">12640+</span>
+                                </a>
+                                <a href="#" target="_blank" class="twitter-soc">
+                                <i class="fab fa-twitter"></i>
+                                <span class="soc-widget-title">Followers</span>
+                                <span class="soc-widget_counter">1456</span>												
+                                </a> 
+                                <a href="#" target="_blank" class="youtube-soc">
+                                <i class="fab fa-youtube"></i>
+                                <span class="soc-widget-title">Followers</span>
+                                <span class="soc-widget_counter">956+</span>												
+                                </a> 												
+                                <a href="#" target="_blank" class="instagram-soc">
+                                <i class="fab fa-instagram"></i>
+                                <span class="soc-widget-title">Followers</span>
+                                <span class="soc-widget_counter">1600+</span>												
+                                </a> 														
+                            </div>
+                        </div>
+                    </div>
+                    <!-- box-widget  end -->						
+                    <!-- box-widget -->
+                    {% if lim_tags %}
+                    <div class="box-widget fl-wrap">
+                        <div class="widget-title">Popular Tags</div>
+                        <div class="box-widget-content">
+                            <div class="tags-widget">
+                                {% for tag in lim_tags %}
+                                <a href="#">{{tag.name|upper}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- box-widget  end -->						
+                    <!-- box-widget -->
+                    {% if editors_choice %}
+                    <div class="box-widget fl-wrap">
+                        <div class="box-widget-content">
+                            <div class="single-grid-slider slider_widget">
+                                <div class="slider_widget_title">Editor's Choice</div>
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {% for post in editors_choice %}
+                                        <!-- swiper-slide-->  
+                                        <div class="swiper-slide">
+                                            <div class="grid-post-item     fl-wrap">
+                                                <div class="grid-post-media gpm_sing">
+                                                    <div class="bg-wrap">
+                                                        <div class="bg" data-bg="{% if post.bg_image %}{{post.bg_image.url}}{% else %}{{post.image.url}}{% endif %}"></div>
+                                                        <div class="overlay"></div>
+                                                    </div>
+                                                    <div class="grid-post-media_title">
+                                                        <a class="post-category-marker" href="category.html">{{post.category}}</a>
+                                                        <h4><a href="{{post.get_absolute_url}}">{{post.title|truncatewords:"20"}}</a></h4>
+                                                        <span class="video-date"><i class="far fa-clock"></i>{{post.createdAt|date:"d M Y"}}</span>
+                                                        <ul class="post-opt">
+                                                            <li><i class="far fa-comments-alt"></i> {{post.comments}} </li>
+                                                            <li><i class="fal fa-eye"></i>  {{post.views}} </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- swiper-slide end-->	
+                                        {% endfor %}								
+                                    </div>
+                                    <div class="sgs-pagination sgs_hor "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- box-widget  end -->					
+                </div>
+                <!-- sidebar  end -->
+            </div>
+        </div>
+        <div class="limit-box fl-wrap"></div>
+    </div>
+</section>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>{% block title %} Dashboard || {% endblock title %}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link
+      rel="icon"
+      href="{% static 'images/lion2.png' %}"
+      type="image/x-icon"
+    />
+    <!-- VENDOR CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/bootstrap/css/bootstrap.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/font-awesome/css/font-awesome.min.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/charts-c3/plugin.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/chartist/css/chartist.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/toastr/toastr.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/vendor/summernote/dist/summernote.css' %}"
+    />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/main.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard/css/color_skins.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'dashboard/css/blog.css' %}" />
+
+
+{#  <script src="https://<hostname.tld>/tinymce.min.js" referrerpolicy="origin"></script>#}
+
+  <!-- The script above *must* be listed first because it must be loaded first. -->
+  <!-- If it is not listed (and loaded) first, TinyMCE will not work. -->
+  <!-- Also: <hostname.tld> above *must* be replaced with the TinyMCE server’s FQDN. -->
+{#  <script src="https://cdn.tiny.cloud/1/e713o2ikh1skdb5bl4ypc2i7mleblq37l5p7vshc7ktqja7f/tinymce/6/plugins.min.js" referrerpolicy="origin"></script>#}
+  <!-- This script provides access to tinyMCE’s premium plugins. -->
+
+  {% block css %}
+  {% endblock css %}
+
+
+  </head>
+
+  <body class="theme-orange">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+      <div class="loader">
+        <div class="m-t-30">
+          <img
+            src="https://wrraptheme.com/templates/hexabit/html/assets/images/icon-light.svg"
+            width="48"
+            height="48"
+            alt="lionnic"
+          />
+        </div>
+        <p>Please wait...</p>
+      </div>
+    </div>
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+
+    <div id="wrapper">
+      <!-- main nav -->
+      {% include "dashboard/common/navbar.html" %}
+      <!-- right nabar -->
+      {% include "dashboard/shared/rnavbar.html" %}
+      <!-- left nabar -->
+      {% include "dashboard/shared/lnavbar.html" %}
+      
+      <!-- content -->
+      <div id="main-content">
+        <!-- header -->
+        {% block header %} {% endblock header %}
+        <!--  -->
+        {% include "dashboard/shared/minnav.html" %}
+        
+        <!-- main body content -->
+        <div class="container-fluid">
+          {% block content %}
+
+              {% block messages %}
+              {% endblock messages %}
+
+          {% endblock content %}
+        </div>
+        
+        <!-- /main body content -->
+      </div>
+    </div>
+    
+    <!-- Javascript -->
+    <script src="{% static 'dashboard/bundles/libscripts.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/bundles/vendorscripts.bundle.js' %}"></script>
+
+    <script src="{% static 'dashboard/bundles/c3.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/bundles/chartist.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/vendor/toastr/toastr.js' %}"></script>
+    
+    <script src="{% static 'dashboard/bundles/mainscripts.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/js/index.js' %}"></script>
+    <!-- Jquery Knob-->
+    <script src="{% static 'dashboard/bundles/knob.bundle.js' %}"></script>
+    <script src="{% static 'dashboard/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'dashboard/vendor/summernote/dist/summernote.js' %}"></script>
+    
+    <script>
+      $(function () {
+        $('.knob').knob({
+          draw: function () {}
+        })
+      })
+    </script>
+
+    {% block js %}
+    {% endblock js %}
+  </body>
+</html>

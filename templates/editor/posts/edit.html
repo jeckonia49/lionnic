@@ -1,0 +1,141 @@
+
+
+{% extends "base.html" %} {% load static %}
+<!---->
+
+{% block content %}
+
+  
+  <!--section   -->
+  <section class="hero-section">
+    <div class="bg-wrap hero-section_bg">
+        <div class="bg" data-bg="{% static 'images/bg/11.jpg' %}"></div>
+    </div>
+    <div class="container">
+        <div class="hero-section_title">
+            <h2>Edit Post</h2>
+        </div>
+        <div class="clearfix"></div>
+        <div class="breadcrumbs-list fl-wrap">
+            <a href="{% url 'posts:home' %}">Home</a> <a href="{% url 'posts:posts' %}">Posts</a> <span>Editor</span>
+        </div>
+        <div class="scroll-down-wrap scw_transparent">
+            <div class="mousey">
+                <div class="scroller"></div>
+            </div>
+            <span>Scroll Down To Discover</span>
+        </div>
+    </div>
+</section>
+<!-- section end  -->
+
+
+<!--section   -->
+<section>
+    <div class="container">
+        <div class="row">
+        
+            <div class="col-md-4">
+                <div class="left_fix-bar fl-wrap">
+                    <div class="profile-card-wrap fl-wrap">
+                        <div class="profile-card_media fl-wrap">
+                            <img src="{% static 'images/avatar/ceod.png' %}" alt="">
+                            <div class="profile-card_media_content">
+                                <h4>{{profile.full_name|default:profile.username|upper}}</h4>
+                                <h5>{{profile.user.date_joined|timesince}}</h5>
+                            </div>
+                            <div class="abs_bg"></div>
+                            <div class="profile-card-stats">
+                                <ul>
+                                    <li><span>{{profile.get_posts.count}}</span>Articles</li>
+                                    <li><span>{{total_views.total_views}}</span> Views</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="profile-card_content">
+                            <h4>About</h4>
+                            <p>
+                                {% if profile.bio %}
+                                {{profile.bio|safe}}
+                                {% else %}
+                                In a professional context it often happens that private or corporate clients corder a
+                                publication to be made and presented with the actual content still not being ready. 
+                                Think of a news blog that’s filled with content hourly on the day of going live.
+                                {% endif %}
+                            </p>
+                            <div class="pc_contacts">
+                                <ul>
+                                    <li>
+                                        <span>Write:</span> <a href="#">{{profile.user.email}}</a>
+                                    </li>
+                                    <li>
+                                        <span>Call:</span> <a href="#">+{{profile.phone}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="profile-card-footer fl-wrap">
+                            <div class="profile-card-footer_title">Follow: </div>
+                            <div class="profile-card-social">
+                                <ul>
+                                    <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-8">
+                <div class="main-container fl-wrap fix-container-init">
+                   
+                    {% include "editor/posts/filter.html" %}
+                    
+
+                    <div class="grid-post-wrap">
+                    <!-- starta forms -->
+                    <div class="row">
+                        <div id="contact-form" style="margin-top: 20px;">
+                            <div id="message"></div>
+                            <form  class="custom-form px-5" method="POST" action="{% url 'writer:post_edit' post.pk post.slug %}" enctype='multipart/form-data'>
+                                {% csrf_token %}
+                                <fieldset>
+
+                                    <div style="margin-left:20px;">
+                                    {% if form.erros %}
+                                    {{form.errors}}
+                                        {% endif %}
+                                    </div>
+                                
+                                    <div class="row mb-3" style="margin-left:20px; margin-bottom:10px !important;">
+                                        <div clas="col-lg-12">
+                                           {{form.as_p}}
+                                           {{form.media}}
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                
+                                <button type="submit" class="btn color-bg float-btn" >Send message <i class="fas fa-caret-right"></i></button>
+                            </form>
+                        </div>
+                        <!-- contact form  end--> 
+
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        
+        
+        </div>
+    </div>
+    <div class="limit-box fl-wrap"></div>
+</section>
+<!-- section end -->
+
+{% endblock content %}

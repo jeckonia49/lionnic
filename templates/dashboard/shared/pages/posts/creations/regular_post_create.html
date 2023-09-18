@@ -1,0 +1,168 @@
+{% extends "dashboard/base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'dashboard/vendor/bootstrap-multiselect/bootstrap-multiselect.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/vendor/parsleyjs/css/parsley.css' %}">
+
+{% endblock css %}
+
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <form enctype="multipart/form-data" action="{% url 'dashboard:post_regular_create' %}" method="post">
+        {% csrf_token %}
+    <!-- Color Pickers -->
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header"><h1>Topic</h1></div>
+                    <div class="body">
+                        <div class="input-group mb-3">
+                           {{ form.title }}
+                        </div>
+                        <div class="input-group mb-4">
+                            <select name="topic" class="form-select select2-container multiselect multiselect-custom" title="topic">
+                                <option  value={{ form.topic }}></option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-4">
+                            <select multiple title="tags" name="tags">
+                                <option value={{ form.tags }}></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header"><h1>Topic Summary</h1></div>
+                    <div class="body">
+                        <div class="input-group mb-3">
+                            {{ form.summary }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row clearfix">
+            <div class="col-ld-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header"><h1>Images</h1></div>
+                    <hr />
+                    <div class="body">
+                        <p>Post Image</p>
+                        <div class="input-group mb-3">
+                            {{ form.image }}
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="body">
+                        <p>Post Background Image</p>
+                        <div class="input-group mb-3">
+                            {{ form.bg_image }}
+                        </div>
+                    </div>
+
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h1>{{ form.content.label }}</h1>
+                    </div>
+                    <div class="body">
+                        <div class="input-group mb-3">
+                            {{ form.media }}
+                            {{ form.content }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <button class="btn btn-primary" type="submit" >
+                           Submit post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</form>
+  
+  </div>
+
+{% endblock content %}
+
+
+
+{% block scripts %}
+ 
+ <!-- Bootstrap Colorpicker Js -->
+{% endblock scripts %}
+
+
+
+{% block js %}
+ <!-- Javascript -->
+
+ <script src="{% static 'dashboard/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js' %}"></script>
+ <!-- Bootstrap Colorpicker Js -->
+
+ <script src="{% static 'dashboard/vendor/jquery-inputmask/jquery.inputmask.bundle.js' %}"></script>
+ <!-- Input Mask Plugin Js -->
+
+ <script src="{% static 'dashboard/vendor/jquery.maskedinput/jquery.maskedinput.min.js' %}"></script>
+
+ <script src="{% static 'dashboard/vendor/multi-select/js/jquery.multi-select.js' %}"></script>
+ <!-- Multi Select Plugin Js -->
+ 
+ <script src="{% static 'dashboard/vendor/bootstrap-multiselect/bootstrap-multiselect.js' %}"></script>
+
+ <script src="{% static 'dashboard/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+
+ <script src="{% static 'dashboard/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js' %}"></script>
+ <!-- Bootstrap Tags Input Plugin Js -->
+
+ <script src="{% static 'dashboard/vendor/nouislider/nouislider.js' %}"></script>
+ <!-- noUISlider Plugin Js -->
+
+ <script src="{% static 'dashboard/bundles/mainscripts.bundle.js' %}"></script>
+ <script src="{% static 'dashboard/js/pages/forms/advanced-form-elements.js' %}"></script>
+
+
+
+ <script>
+    $(function() {
+        // validation needs name of the element
+        $('#food').multiselect();
+        
+        // initialize after multiselect
+        $('#basic-form').parsley();
+    });
+
+
+
+    </script>
+
+
+{% endblock js %}
